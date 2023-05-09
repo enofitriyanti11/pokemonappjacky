@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Hero() {
   return (
-    <div className="hero bg-base-200">
+    <div className="hero">
         <div className="hero-content flex-col lg:flex-row-reverse">
             <img src={require("../img/pokemonHero.jpeg")} className="max-w-sm rounded-lg shadow-2xl" />
             <img src="img/pokemonHero.jpeg" className="max-w-sm rounded-lg shadow-2xl" />
