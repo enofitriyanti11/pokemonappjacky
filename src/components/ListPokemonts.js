@@ -34,6 +34,38 @@ const products = [
       imageSrc: 'img/dombapokemon.png',
       imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     },
+    {
+        id: 5,
+        name: 'Fennekin Pokemon',
+        href: '#',
+        type: 'Api',
+        imageSrc: 'img/edward.png',
+        imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+      },
+      {
+        id: 6,
+        name: 'Hawlucha Pokemon',
+        href: '#',
+        type: 'Angin',
+        imageSrc: 'img/Hawlucha.png',
+        imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+      },
+      {
+        id: 7,
+        name: 'Fletchinder Pokemon',
+        href: '#',
+        type: 'Angin',
+        imageSrc: 'img/Fletchinder.png',
+        imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+      },
+      {
+        id: 8,
+        name: 'Mareep Pokemon',
+        href: '#',
+        type: 'Listrik',
+        imageSrc: 'img/dombapokemon.png',
+        imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+      },
 
   ]
 
