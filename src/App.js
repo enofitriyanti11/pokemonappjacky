@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ListPokemonts from './components/ListPokemonts';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <Navbar />
     <Hero />
     <ListPokemonts />
+    <Footer />
   </div>
 
   );
