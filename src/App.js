@@ -1,19 +1,27 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ListPokemonts from './components/ListPokemonts';
-import Footer from './components/Footer';
-import HeroVideo from './components/HeroVideo';
+import {
+  BrowserRouter as Router, 
+  Route,
+  Routes,
+} from  "react-router-dom";
+
+import Home from "./pages/Home"
+import MyPokemonsPage from './pages/MyPokemonsPage';
+import VideoPage from './pages/VideoPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
-  <div className='container mx-auto'>
-    <Navbar />
-    <Hero />
-    <ListPokemonts />
-    <HeroVideo />
-    <Footer />
-  </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/mypokemons" element={<MyPokemonsPage/>} />
+          <Route path="/videopage" element={<VideoPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+        </Routes>
+      </Router>
+    </>
 
   );
 }

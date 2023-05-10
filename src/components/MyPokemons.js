@@ -69,7 +69,7 @@ const products = [
 
   ]
 
-export default function ListPokemonts() {
+export default function MyPokemons() {
   return (
     <div className="">
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">

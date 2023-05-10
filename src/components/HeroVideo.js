@@ -1,6 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function HeroVideo() {
+    const navigate = useNavigate();
+    
+    const onPress  = () => {
+        navigate('/videopage');
+    }
     return (
         <div>
             <div className="card card-side bg-base-100 shadow-xl my-5">
@@ -9,7 +15,7 @@ function HeroVideo() {
                     <h2 className="card-title">New movie is released!</h2>
                     <p>Click the button to watch on Jetflix app.</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Watch</button>
+                        <button onClick={onPress} className="btn btn-primary">Watch</button>
                     </div>
                 </div>
             </div>
