@@ -9,6 +9,8 @@ import Home from "./pages/Home"
 import MyPokemonsPage from './pages/MyPokemonsPage';
 import VideoPage from './pages/VideoPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/mypokemons" element={<MyPokemonsPage/>} />
           <Route path="/videopage" element={<VideoPage/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegisterPage/>} />
         </Routes>
       </Router>
     </>
