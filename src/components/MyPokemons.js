@@ -32,30 +32,31 @@ export default function MyPokemons() {
     array sebelum melakukan operasi penghapusan, sehingga tidak mengubah state langsung dan lebih aman untuk digunakan. */
 
     const deletePokemon = (pokemon) => {
-        // membuat salinan array
-        const updatedMyPokemon = [...myPokemon];
-      
-        // mencari index data yang akan dihapus
-        const index = updatedMyPokemon.findIndex((p) => p.id === pokemon.id);
-      
-        //  kodnisi menghapus data dari array jika ditemukan
-        if (index !== -1) {
-            updatedMyPokemon.splice(index, 1);
-            //splice() adalah sebuah method built-in pada JavaScript array yang digunakan untuk menambah, menghapus, dan/atau mengganti elemen pada sebuah array. Method ini menerima dua parameter: index dan howMany, dimana index adalah posisi dari elemen yang ingin diubah dan howMany adalah jumlah elemen yang ingin diubah.
-            //mengubah array updatedMyPokemon dengan menghapus satu elemen dari array tersebut pada indeks yang ditentukan dengan nilai index
-            //elemen yang dihapus adalah elemen yang memiliki indeks yang sama dengan indeks dari pokemon yang ingin dihapus dari array.
-      
-          // menyimpan array yang diperbarui ke local storage
-          localStorage.setItem("myPokemon", JSON.stringify(updatedMyPokemon));
-      
-          // memperbarui state dengan array yang diperbarui
-          setMyPokemons(updatedMyPokemon);
+        const confirmation = window.confirm("Apakah Anda yakin ingin menghapus Pokemon ini dari My Pokemon?");
+
+        if(confirmation) {
+            // membuat salinan array
+            const updatedMyPokemon = [...myPokemon];
+          
+            // mencari index data yang akan dihapus
+            const index = updatedMyPokemon.findIndex((p) => p.id === pokemon.id);
+          
+            //  kodnisi menghapus data dari array jika ditemukan
+            if (index !== -1) {
+                updatedMyPokemon.splice(index, 1);
+                //splice() adalah sebuah method built-in pada JavaScript array yang digunakan untuk menambah, menghapus, dan/atau mengganti elemen pada sebuah array. Method ini menerima dua parameter: index dan howMany, dimana index adalah posisi dari elemen yang ingin diubah dan howMany adalah jumlah elemen yang ingin diubah.
+                //mengubah array updatedMyPokemon dengan menghapus satu elemen dari array tersebut pada indeks yang ditentukan dengan nilai index
+                //elemen yang dihapus adalah elemen yang memiliki indeks yang sama dengan indeks dari pokemon yang ingin dihapus dari array.
+          
+              // menyimpan array yang diperbarui ke local storage
+              localStorage.setItem("myPokemon", JSON.stringify(updatedMyPokemon));
+          
+              // memperbarui state dengan array yang diperbarui
+              setMyPokemons(updatedMyPokemon);
+            }
         }
       };
       
-    
-
-
     return (
         <div className="">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
