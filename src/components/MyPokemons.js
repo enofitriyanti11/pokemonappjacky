@@ -1,99 +1,87 @@
-import React from 'react'
-
-
-const products = [
-    {
-      id: 1,
-      name: 'Fennekin Pokemon',
-      href: '#',
-      type: 'Api',
-      imageSrc: 'img/edward.png',
-      imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-    },
-    {
-      id: 2,
-      name: 'Hawlucha Pokemon',
-      href: '#',
-      type: 'Angin',
-      imageSrc: 'img/Hawlucha.png',
-      imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-    },
-    {
-      id: 3,
-      name: 'Fletchinder Pokemon',
-      href: '#',
-      type: 'Angin',
-      imageSrc: 'img/Fletchinder.png',
-      imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-    },
-    {
-      id: 4,
-      name: 'Mareep Pokemon',
-      href: '#',
-      type: 'Listrik',
-      imageSrc: 'img/dombapokemon.png',
-      imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    },
-    {
-        id: 5,
-        name: 'Fennekin Pokemon',
-        href: '#',
-        type: 'Api',
-        imageSrc: 'img/edward.png',
-        imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-      },
-      {
-        id: 6,
-        name: 'Hawlucha Pokemon',
-        href: '#',
-        type: 'Angin',
-        imageSrc: 'img/Hawlucha.png',
-        imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-      },
-      {
-        id: 7,
-        name: 'Fletchinder Pokemon',
-        href: '#',
-        type: 'Angin',
-        imageSrc: 'img/Fletchinder.png',
-        imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-      },
-      {
-        id: 8,
-        name: 'Mareep Pokemon',
-        href: '#',
-        type: 'Listrik',
-        imageSrc: 'img/dombapokemon.png',
-        imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-      },
-
-  ]
+import React, { useState, useEffect } from 'react';
 
 export default function MyPokemons() {
-  return (
-    <div className="">
-    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-      <h1 className="text-zinc-700 py-5 font-bold text-5xl">List Pokemons</h1>
+    const [myPokemon, setMyPokemons] = useState([]);
 
-      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {products.map((product) => (
-          <a key={product.id} href={product.href} className="group relative">
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
+
+    const getMyPokemons = () => {
+        const savedData = JSON.parse(localStorage.getItem("myPokemon"));
+        if (savedData) {
+            setMyPokemons(savedData);
+        }
+    };
+
+    useEffect(() => {
+        getMyPokemons();
+    }, []);
+
+    //fungsi delete local storage yg simple dan diambil berdasarkan id  dan memiliki kelemahan
+    // karna parameters "id" yang di set sedangkan pada local storage itu menggunakan key mypokemons
+    //sehingga dia perlu mencari key yang sesuai di mypokemons  
+    // Fungsi filter digunakan untuk membuat array baru dengan semua elemen yang memenuhi kondisi yang diberikan. Dalam hal ini, kondisinya adalah bahwa id dari setiap pokemon yang diproses dalam loop (p.id) tidak sama dengan id pokemon yang ingin dihapus (pokemon.id).
+    //Dengan menghapus pokemon dari array updatedMyPokemon, dan kemudian mengubah nilai state myPokemon menjadi array yang baru, kita dapat menghapus pokemon dari tampilan halaman.
+
+    /* const deletePokemon = (id) => {
+        const updatedPokemons = myPokemon.filter(pokemon => pokemon.id !== id);
+        setMyPokemons(updatedPokemons);
+        localStorage.setItem("myPokemon", JSON.stringify(updatedPokemons));
+    } */
+
+    /* Sementara pada kode yang dibawah yang gunakan, fungsi deletePokemon menerima parameter berupa objek pokemon, 
+    sehingga tidak perlu mencari key di localStorage. Selain itu, kode tersebut juga membuat salinan 
+    array sebelum melakukan operasi penghapusan, sehingga tidak mengubah state langsung dan lebih aman untuk digunakan. */
+
+    const deletePokemon = (pokemon) => {
+        // membuat salinan array
+        const updatedMyPokemon = [...myPokemon];
+      
+        // mencari index data yang akan dihapus
+        const index = updatedMyPokemon.findIndex((p) => p.id === pokemon.id);
+      
+        //  kodnisi menghapus data dari array jika ditemukan
+        if (index !== -1) {
+            updatedMyPokemon.splice(index, 1);
+            //splice() adalah sebuah method built-in pada JavaScript array yang digunakan untuk menambah, menghapus, dan/atau mengganti elemen pada sebuah array. Method ini menerima dua parameter: index dan howMany, dimana index adalah posisi dari elemen yang ingin diubah dan howMany adalah jumlah elemen yang ingin diubah.
+            //mengubah array updatedMyPokemon dengan menghapus satu elemen dari array tersebut pada indeks yang ditentukan dengan nilai index
+            //elemen yang dihapus adalah elemen yang memiliki indeks yang sama dengan indeks dari pokemon yang ingin dihapus dari array.
+      
+          // menyimpan array yang diperbarui ke local storage
+          localStorage.setItem("myPokemon", JSON.stringify(updatedMyPokemon));
+      
+          // memperbarui state dengan array yang diperbarui
+          setMyPokemons(updatedMyPokemon);
+        }
+      };
+      
+    
+
+
+    return (
+        <div className="">
+            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
+                <h1 className="text-zinc-700 py-5 font-bold text-5xl">My Pokemons</h1>
+
+                <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                    {myPokemon.map((pokemon) => (
+                        <a key={pokemon.id} href={pokemon.href} className="group relative">
+                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                                <img
+                                    src={pokemon.imageSrc}
+                                    alt={pokemon.imageAlt}
+                                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                                />
+                            </div>
+                            <h3 className="mt-4 text-sm text-gray-700">{pokemon.name}</h3>
+                            <p className="mt-1 text-lg font-medium text-gray-900">{pokemon.type}</p>
+                            <div className="relative">
+                            <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Delete</button>
+
+                            </div>
+                        </a>
+                    ))}
+                </div>
             </div>
-            <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">{product.type}</p>
-            <div className="relative">
-              <button className="btn absolute btn-sm top-0 right-0">Remove</button>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </div>
-  )
+        </div>
+
+    )
 }
