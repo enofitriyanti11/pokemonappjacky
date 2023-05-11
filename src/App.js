@@ -10,6 +10,7 @@ import MyPokemonsPage from './pages/MyPokemonsPage';
 import VideoPage from './pages/VideoPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import ListPokemonsPage from './pages/ListPokemonsPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/listpokemons" element={<ListPokemonsPage/>} />
           <Route path="/mypokemons" element={<MyPokemonsPage/>} />
           <Route path="/videopage" element={<VideoPage/>} />
           <Route path="/login" element={<LoginPage/>} />
