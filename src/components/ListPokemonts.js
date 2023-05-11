@@ -109,7 +109,7 @@ export default function ListPokemonts() {
             <h3 className="mt-4 text-sm text-gray-700">{pokemon.name}</h3>
             <p className="mt-1 text-lg font-medium text-gray-900">{pokemon.type}</p>
             <div className="relative">
-              <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Add xxxx</button>
+              <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Add to My Pokemon</button>
             </div>
           </a>
         ))}

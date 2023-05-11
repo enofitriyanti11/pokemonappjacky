@@ -32,7 +32,7 @@ export default function MyPokemons() {
     array sebelum melakukan operasi penghapusan, sehingga tidak mengubah state langsung dan lebih aman untuk digunakan. */
 
     const deletePokemon = (pokemon) => {
-        const confirmation = window.confirm("Apakah Anda yakin ingin menghapus Pokemon ini dari My Pokemon?");
+        const confirmation = window.confirm("Apakah Anda yakin ingin melepaskan Pokemon ini dari My Pokemon?");
 
         if(confirmation) {
             // membuat salinan array
@@ -53,6 +53,7 @@ export default function MyPokemons() {
           
               // memperbarui state dengan array yang diperbarui
               setMyPokemons(updatedMyPokemon);
+              alert("Pokemon berhasil dilepas dari My Pokemon!");
             }
         }
       };
@@ -75,7 +76,7 @@ export default function MyPokemons() {
                             <h3 className="mt-4 text-sm text-gray-700">{pokemon.name}</h3>
                             <p className="mt-1 text-lg font-medium text-gray-900">{pokemon.type}</p>
                             <div className="relative">
-                            <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Delete</button>
+                            <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Release Pokemons</button>
 
                             </div>
                         </a>
