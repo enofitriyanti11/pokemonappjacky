@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const products = [
+const pokemons = [
     {
       id: 1,
       name: 'Fennekin Pokemon',
@@ -24,7 +24,7 @@ const products = [
       href: '#',
       type: 'Angin',
       imageSrc: 'img/Fletchinder.png',
-      imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+      imageAlt: 'Person using a pen to cross a task off a pokemonivity paper card.',
     },
     {
       id: 4,
@@ -56,7 +56,7 @@ const products = [
         href: '#',
         type: 'Angin',
         imageSrc: 'img/Fletchinder.png',
-        imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        imageAlt: 'Person using a pen to cross a task off a pokemonivity paper card.',
       },
       {
         id: 8,
@@ -68,28 +68,26 @@ const products = [
       },
 
   ]
-
-  function addedPokemon(products) {
+  
+  function addPokemon(pokemon) {
     // Ambil data dari local storage (jika ada)
     const existingData = localStorage.getItem("myPokemon");
-    const checkData = JSON.parse(existingData)
-
+  
     // Jika data tidak ditemukan, buat array kosong
     const myPokemon = existingData ? JSON.parse(existingData) : [];
-
-    const isDataExist = checkData && checkData.some((p) => p.id === products.id);
-
+  
+    const isDataExist = myPokemon.some((p) => p.id === pokemon.id);
+  
     if (isDataExist) {
-      alert("Data sudah ada!");
+      alert("Pokemon sudah ada!");
     } else {
-       // Tambahkan produk yang dipilih ke dalam array myPokemon
-    myPokemon.push(products);
-    // Simpan data ke local storage
-    localStorage.setItem("myPokemon", JSON.stringify(myPokemon));
-    // Tampilkan pesan sukses
-    alert("Pokemon berhasil ditambahkan ke My Pokemon!");
+      // Tambahkan pokemon yang dipilih ke dalam array myPokemon
+      myPokemon.push(pokemon);
+      // Simpan data ke local storage
+      localStorage.setItem("myPokemon", JSON.stringify(myPokemon));
+      // Tampilkan pesan sukses
+      alert("Pokemon berhasil ditambahkan ke koleksi kamu!");
     }
-    
   }
   
   
@@ -99,19 +97,19 @@ export default function ListPokemonts() {
     <div className="">
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {products.map((product) => (
-          <a key={product.id} href={product.href} className="group relative">
+        {pokemons.map((pokemon) => (
+          <a key={pokemon.id} href={pokemon.href} className="group relative">
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
               <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+                src={pokemon.imageSrc}
+                alt={pokemon.imageAlt}
                 className="h-full w-full object-cover object-center group-hover:opacity-75"
               />
             </div>
-            <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">{product.type}</p>
+            <h3 className="mt-4 text-sm text-gray-700">{pokemon.name}</h3>
+            <p className="mt-1 text-lg font-medium text-gray-900">{pokemon.type}</p>
             <div className="relative">
-              <button onClick={()=> addedPokemon(product)} className="btn absolute btn-sm top-0 right-0">Add xxxx</button>
+              <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Add xxxx</button>
             </div>
           </a>
         ))}
