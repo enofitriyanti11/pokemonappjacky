@@ -69,11 +69,34 @@ const products = [
 
   ]
 
+  function addedPokemon(products) {
+    // Ambil data dari local storage (jika ada)
+    const existingData = localStorage.getItem("myPokemon");
+    const checkData = JSON.parse(existingData)
+
+    // Jika data tidak ditemukan, buat array kosong
+    const myPokemon = existingData ? JSON.parse(existingData) : [];
+
+    const isDataExist = checkData && checkData.some((p) => p.id === products.id);
+
+    if (isDataExist) {
+      alert("Data sudah ada!");
+    } else {
+       // Tambahkan produk yang dipilih ke dalam array myPokemon
+    myPokemon.push(products);
+    // Simpan data ke local storage
+    localStorage.setItem("myPokemon", JSON.stringify(myPokemon));
+    // Tampilkan pesan sukses
+    alert("Pokemon berhasil ditambahkan ke My Pokemon!");
+    }
+    
+  }
+  
+  
+
 export default function ListPokemonts() {
   return (
     <div className="">
-    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-      <h1 className="text-zinc-700 py-5 font-bold text-5xl">List Pokemons</h1>
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {products.map((product) => (
@@ -88,12 +111,11 @@ export default function ListPokemonts() {
             <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
             <p className="mt-1 text-lg font-medium text-gray-900">{product.type}</p>
             <div className="relative">
-              <button className="btn absolute btn-sm top-0 right-0">Add</button>
+              <button onClick={()=> addedPokemon(product)} className="btn absolute btn-sm top-0 right-0">Add xxxx</button>
             </div>
           </a>
         ))}
       </div>
     </div>
-  </div>
   )
 }
