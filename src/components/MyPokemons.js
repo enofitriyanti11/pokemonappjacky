@@ -34,50 +34,49 @@ export default function MyPokemons() {
     const deletePokemon = (pokemon) => {
         const confirmation = window.confirm("Apakah Anda yakin ingin melepaskan Pokemon ini dari My Pokemon?");
 
-        if(confirmation) {
+        if (confirmation) {
             // membuat salinan array
             const updatedMyPokemon = [...myPokemon];
-          
+
             // mencari index data yang akan dihapus
             const index = updatedMyPokemon.findIndex((p) => p.id === pokemon.id);
-          
+
             //  kodnisi menghapus data dari array jika ditemukan
             if (index !== -1) {
                 updatedMyPokemon.splice(index, 1);
                 //splice() adalah sebuah method built-in pada JavaScript array yang digunakan untuk menambah, menghapus, dan/atau mengganti elemen pada sebuah array. Method ini menerima dua parameter: index dan howMany, dimana index adalah posisi dari elemen yang ingin diubah dan howMany adalah jumlah elemen yang ingin diubah.
                 //mengubah array updatedMyPokemon dengan menghapus satu elemen dari array tersebut pada indeks yang ditentukan dengan nilai index
                 //elemen yang dihapus adalah elemen yang memiliki indeks yang sama dengan indeks dari pokemon yang ingin dihapus dari array.
-          
-              // menyimpan array yang diperbarui ke local storage
-              localStorage.setItem("myPokemon", JSON.stringify(updatedMyPokemon));
-          
-              // memperbarui state dengan array yang diperbarui
-              setMyPokemons(updatedMyPokemon);
-              alert("Pokemon berhasil dilepas dari My Pokemon!");
+
+                // menyimpan array yang diperbarui ke local storage
+                localStorage.setItem("myPokemon", JSON.stringify(updatedMyPokemon));
+
+                // memperbarui state dengan array yang diperbarui
+                setMyPokemons(updatedMyPokemon);
+                alert("Pokemon berhasil dilepas dari My Pokemon!");
             }
         }
-      };
-      
+    };
+
     return (
         <div className="">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
                 <h1 className="text-zinc-700 py-5 font-bold text-5xl">My Pokemons</h1>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {myPokemon.map((pokemon) => (
-                        <a key={pokemon.id} href={pokemon.href} className="group relative">
-                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                    {myPokemon.map((pokemon, id) => (
+                        <a key={id} href={pokemon.href} className="group relative">
+                            <div className="aspect-h-1 aspect-w-1 w-full my-8 overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                 <img
-                                    src={pokemon.imageSrc}
-                                    alt={pokemon.imageAlt}
-                                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                                    src={pokemon.image}
+                                    alt={pokemon.name}
+                                    className="object-contain h-48 w-96 lg:h-90 lg:w-90"
                                 />
                             </div>
-                            <h3 className="mt-4 text-sm text-gray-700">{pokemon.name}</h3>
-                            <p className="mt-1 text-lg font-medium text-gray-900">{pokemon.type}</p>
+                            <h3 className="mt-4 text-lg text-gray-900 font-bold">{pokemon.name}</h3>
+                            <p className="mt-1 text-sm font-medium text-gray-700">{pokemon.type}</p>
                             <div className="relative">
-                            <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-0">Release Pokemons</button>
-
+                                <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-5 ">Release</button>
                             </div>
                         </a>
                     ))}

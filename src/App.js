@@ -11,6 +11,7 @@ import VideoPage from './pages/VideoPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ListPokemonsPage from './pages/ListPokemonsPage';
+import DetailPage from './pages/DetailPage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/videopage" element={<VideoPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/detail" element={<DetailPage/>} />
         </Routes>
       </Router>
     </>
