@@ -101,12 +101,13 @@ export default function ListPokemonts() {
     async function fetchPokemons() {
       try {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+        console.log("response" , response.data);
         const pokemonList = response.data.results;
         const pokemonData = [];
 
         for (const pokemon of pokemonList) {
           const pokemonResponse = await axios.get(pokemon.url);
-          const pokemonImage = pokemonResponse.data.sprites.front_default;
+          const pokemonImage = pokemonResponse.data.sprites.other.dream_world.front_default;
 
           pokemonData.push({
             name: pokemon.name,
@@ -132,13 +133,13 @@ export default function ListPokemonts() {
               <img
                 src={pokemon.image}
                 alt={pokemon.name}
-                className="object-contain h-48 w-96 lg:h-90 lg:w-90"
+                className="object-contain h-48 w-96 lg:h-48 lg:w-96"
               />
             </div>
             <h3 className="mt-4 ml-2 text-lg text-gray-900 font-bold">{pokemon.name}</h3>
             <p className="mt-1 text-sm font-medium text-gray-700">{pokemon.type}</p>
             <div className="mt-5 relative">
-              <a  href="/detail" className='ml-2 text-sm hover:link-hover'>See Details</a>
+              <a  href={`/detail/${pokemon.name}`} className='ml-2 text-sm hover:link-hover'>See Details</a>
               <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-5"> + </button>
             </div>
           </div>

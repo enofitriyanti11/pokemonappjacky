@@ -25,7 +25,7 @@ function App() {
           <Route path="/videopage" element={<VideoPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>} />
-          <Route path="/detail" element={<DetailPage/>} />
+          <Route path="/detail/:name" element={<DetailPage/>} />
         </Routes>
       </Router>
     </>

@@ -1,44 +1,80 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-redundant-roles */
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const product = {
-    name: 'Basic Tee 6-Pack',
-    price: '$192',
-    href: '#',
-    images: [
-        {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-            alt: 'Two each of gray, white, and black shirts laying flat.',
-        },
-        {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-            alt: 'Model wearing plain black basic tee.',
-        },
-        {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-            alt: 'Model wearing plain gray basic tee.',
-        },
-        {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-            alt: 'Model wearing plain white basic tee.',
-        },
-    ],
-    description:
-        'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-    highlights: [
-        'Hand cut and sewn locally',
-        'Dyed with our proprietary colors',
-        'Pre-washed & pre-shrunk',
-        'Ultra-soft 100% cotton',
-    ],
-    details:
-        'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-}
 
-export default function DetailPokemons() {
+function addPokemon(pokemons) {
+    // Ambil data dari local storage (jika ada)
+    const existingData = localStorage.getItem("myPokemon");
+  
+    // Jika data tidak ditemukan, buat array kosong
+    const myPokemon = existingData ? JSON.parse(existingData) : [];
+  
+    const isDataExist = myPokemon.some((p) => p.name === pokemons.name);
+  
+    if (isDataExist) {
+      alert("Pokemon sudah ada!");
+    } else {
+      // Tambahkan pokemon yang dipilih ke dalam array myPokemon
+      myPokemon.push(pokemons);
+      // Simpan data ke local storage
+      localStorage.setItem("myPokemon", JSON.stringify(myPokemon));
+      // Tampilkan pesan sukses
+      alert("Pokemon berhasil ditambahkan ke koleksi kamu!");
+    }
+  }
+
+
+function PokemonDetail() {
+    const { name } = useParams();
+    // console.log("name", name)
+    //   console.log("id" , id)
+    const [pokemons, setPokemon] = useState(null);
+
+    useEffect(() => {
+        getPokemonDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const getPokemonDetail = async () => {
+        try {
+            // Mengambil data pokemon
+            const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            const pokemonData = pokemonResponse.data;
+
+            // Mendapatkan ability dari pokemon
+            const abilityUrls = pokemonData.abilities.map(ability => ability.ability.url);
+            const abilityResponses = await Promise.all(abilityUrls.map(url => axios.get(url)));
+            const abilities = abilityResponses.map(response => response.data);
+
+            const pokemonImage = pokemonResponse.data.sprites.other.dream_world.front_default;
+            const pokemonWeight = pokemonData.weight;
+            const pokemonHeight = pokemonData.height;
+            const pokemonMove = pokemonData.moves.map(move => move.move.name);
+
+            
+        // Mengupdate state pokemon
+            setPokemon({
+                name: pokemonData.name,
+                abilities: abilities,
+                image: pokemonImage,
+                weight : pokemonWeight,
+                height : pokemonHeight, 
+                moves : pokemonMove
+                // Tambahkan data lain yang Anda inginkan
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    if (!pokemons) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <>
+        <div>
             <div className="bg-white">
                 <div className="container mx-auto pt-6">
                     <h1>Detail Pokemons</h1>
@@ -46,46 +82,46 @@ export default function DetailPokemons() {
                     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
                         <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                             <img
-                                src={product.images[0].src}
-                                alt={product.images[0].alt}
-                                className="h-full w-full object-cover object-center" />
+                                src={pokemons.image}
+                                alt={pokemons.image}
+                                className="h-full w-full object-center" />
                         </div>
                         <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                                 <img
-                                    src={product.images[1].src}
-                                    alt={product.images[1].alt}
+                                    src={pokemons.image}
+                                    alt={pokemons.image}
                                     className="h-full w-full object-cover object-center" />
                             </div>
                             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                                 <img
-                                    src={product.images[2].src}
-                                    alt={product.images[2].alt}
+                                    src={pokemons.image}
+                                    alt={pokemons.image}
                                     className="h-full w-full object-cover object-center" />
                             </div>
                         </div>
                         <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
                             <img
-                                src={product.images[3].src}
-                                alt={product.images[3].alt}
-                                className="h-full w-full object-cover object-center" />
+                                src={pokemons.image}
+                                alt={pokemons.image}
+                                className="h-full w-full object-center" />
                         </div>
                     </div>
 
                     {/* Product info */}
                     <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{pokemons.name}</h1>
                         </div>
 
                         {/* Options */}
                         <div className="mt-4 lg:row-span-3 lg:mt-0">
-                            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
 
                             <form className="mt-10">
                                 <button
                                     type="submit"
                                     className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    onClick={() => addPokemon(pokemons)}
                                 >
                                     Add to bag
                                 </button>
@@ -95,14 +131,20 @@ export default function DetailPokemons() {
                         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
                             {/* Description and details */}
                             <div>
-                                <h3 className="sr-only">Description</h3>
+                                <h3 className="font-bold">Description</h3>
 
-                                <div className="space-y-6">
-                                    <p className="text-base text-gray-900">{product.description}</p>
+                                <div className="">
+                                    <p className='mt-2'>Abilities</p>
+                                    {pokemons.abilities.map(ability => (
+                                        <li key={ability.name}>
+                                            <strong>{ability.name}</strong>
+                                            <p>{ability.effect_entries.find(entry => entry.language.name === 'en').effect}</p>
+                                        </li>
+                                    ))}
                                 </div>
                             </div>
 
-                            <div className="mt-10">
+                            {/* <div className="mt-10">
                                 <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
                                 <div className="mt-4">
@@ -114,19 +156,23 @@ export default function DetailPokemons() {
                                         ))}
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="mt-10">
                                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
-                                <div className="mt-4 space-y-6">
-                                    <p className="text-sm text-gray-600">{product.details}</p>
+                                <div className="mt-4 space-y-1">
+                                    <p className="text-sm text-gray-600">Weight : {pokemons.weight}</p>
+                                    <p className="text-sm text-gray-600">Height : {pokemons.height}</p>
+                                    <p className="text-sm text-gray-600">Move : {pokemons.moves}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }
+
+export default PokemonDetail;
