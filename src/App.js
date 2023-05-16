@@ -12,7 +12,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ListPokemonsPage from './pages/ListPokemonsPage';
 import DetailPage from './pages/DetailPage';
-
+import { isLoggedIn } from '../src/components/auth';
+import { Navigate } from 'react-router-dom';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/listpokemons" element={<ListPokemonsPage/>} />
           <Route path="/mypokemons" element={<MyPokemonsPage/>} />
           <Route path="/videopage" element={<VideoPage/>} />
-          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/login" element={isLoggedIn() ? <Navigate to="/" /> : <LoginPage />} />
           <Route path="/register" element={<RegisterPage/>} />
           <Route path="/detail/:name" element={<DetailPage/>} />
         </Routes>
