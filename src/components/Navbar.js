@@ -63,7 +63,7 @@ export default function Navbar() {
                         
                     </ul>
                 </div>
-                <a className="font-bold normal-case text-xl text-base-100">PokeDex</a>
+                <a className="font-bold normal-case text-xl text-base-100 ml-5">PokeDex</a>
             </div>
             <div className="navbar-center text-base-100 hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -72,7 +72,7 @@ export default function Navbar() {
                     <li><Link to="/mypokemons" className='hover:bg-fourthColor hover:text-neutral-900' onClick={onPressMyPokemonsIsUserLoggedIn} >My Pokemons</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end mr-5">
                 {renderAuthBtn()}
             </div>
         </div>
