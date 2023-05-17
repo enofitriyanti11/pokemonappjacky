@@ -19,10 +19,10 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>
+        <Routes>mypokemons
           <Route path="/" element={<Home/>} />
-          <Route path="/listpokemons" element={<ListPokemonsPage/>} />
-          <Route path="/mypokemons" element={<MyPokemonsPage/>} />
+          <Route path="/listpokemons" element={isLoggedIn() ? <ListPokemonsPage /> : <Navigate to="/" />} />
+          <Route path="/mypokemons" element={isLoggedIn() ? <MyPokemonsPage /> : <Navigate to="/" />} />
           <Route path="/videopage" element={<VideoPage/>} />
           <Route path="/login" element={isLoggedIn() ? <Navigate to="/" /> : <LoginPage />} />
           <Route path="/register" element={<RegisterPage/>} />
