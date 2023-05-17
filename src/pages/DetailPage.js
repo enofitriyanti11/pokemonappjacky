@@ -5,7 +5,7 @@ import DetailPokemons from '../components/DetailPokemons'
 
 export default function DetailPage() {
   return (
-    <div className='container mx-auto'>
+    <div className='bg-secondaryColor'>
       <Navbar />
         <DetailPokemons />
       <Footer />

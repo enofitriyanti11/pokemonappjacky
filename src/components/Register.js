@@ -10,32 +10,32 @@ export default function Register() {
                         <h1 className="text-5xl font-bold">Register Account</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-primaryColor">
                         <div className="card-body">
-                        <h1 className='text-center font-bold'>Register Account</h1>
+                        <h1 className='text-center font-bold text-base-100'>Register Account</h1>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Username</span>
+                                    <span className="label-text text-base-100">Username</span>
                                 </label>
                                 <input type="text" placeholder="Username" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-base-100">Email</span>
                                 </label>
                                 <input type="email" placeholder="email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-base-100">Password</span>
                                 </label>
                                 <input type="text" placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover text-base-100">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Daftar</button>
+                                <button className="btn btn-primary border-0 bg-thirdColor hover:bg-fourthColor hover:text-neutral-900">Daftar</button>
                             </div>
                         </div>
                     </div>

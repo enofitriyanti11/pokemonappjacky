@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <footer className="footer p-10 bg-neutral text-neutral-content">
+        <footer className="footer bg-primaryColor text-neutral-content">
             <div>
                 <img src="img/logo.png"></img>
                 <p>Pokedex Ltd.<br />Providing reliable tech since 2023</p>

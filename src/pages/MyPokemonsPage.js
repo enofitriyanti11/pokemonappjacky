@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 
 function MyPokemonsPage() {
   return (
-  <div className='container mx-auto'>
+  <div className='bg-secondaryColor'>
     <Navbar />
     <MyPokemons />
     <Footer />

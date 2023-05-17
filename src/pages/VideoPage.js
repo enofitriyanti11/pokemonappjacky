@@ -5,7 +5,7 @@ import HeroVideo from '../components/HeroVideo'
 
 function VideoPage() {
   return (
-    <div className='container mx-auto'>
+    <div>
     <Navbar />
     <HeroVideo />
     <Footer />

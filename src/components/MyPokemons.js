@@ -61,22 +61,21 @@ export default function MyPokemons() {
     return (
         <div className="">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-                <h1 className="text-zinc-700 py-5 font-bold text-5xl">My Pokemons</h1>
+                <h1 className="text-base-100 py-5 font-bold text-5xl">My Pokemons</h1>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                     {myPokemon.map((pokemon, id) => (
                         <a key={id} href={pokemon.href} className="group relative">
-                            <div className="aspect-h-1 aspect-w-1 w-full my-8 overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                            <div className="aspect-h-1 aspect-w-1 w-full my-8 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
                                 <img
                                     src={pokemon.image}
                                     alt={pokemon.name}
                                     className="object-contain h-48 w-96 lg:h-90 lg:w-90"
                                 />
                             </div>
-                            <h3 className="mt-4 text-lg text-gray-900 font-bold">{pokemon.name}</h3>
-                            <p className="mt-1 text-sm font-medium text-gray-700">{pokemon.type}</p>
+                            <h3 className="mt-4 text-lg text-gray-900 font-bold text-base-100">{pokemon.name}</h3>
                             <div className="relative">
-                                <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-5 ">Release</button>
+                                <button onClick={() => deletePokemon(pokemon)} className="btn absolute btn-sm top-0 right-5 bg-thirdColor hover:bg-fourthColor hover:text-neutral-900 border-0">Release</button>
                             </div>
                         </a>
                     ))}

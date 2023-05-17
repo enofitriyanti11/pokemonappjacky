@@ -5,7 +5,7 @@ import HeroVideo from '../components/HeroVideo';
 
 function Home() {
   return (
-  <div className='container mx-auto'>
+  <div className='bg-secondaryColor'>
     <Navbar />
     <Hero />
     <HeroVideo />

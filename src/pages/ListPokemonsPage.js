@@ -5,10 +5,10 @@ import Footer from '../components/Footer'
 
 export default function ListPokemonsPage() {
     return (
-        <div className='container mx-auto'>
+        <div className='bg-secondaryColor'>
             <Navbar />
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-                <h1 className="text-zinc-700 py-5 font-bold text-5xl">List Pokemons</h1>
+                <h1 className="text-base-100 py-5 font-bold text-5xl">List Pokemons</h1>
                 <ListPokemonts />
             </div>
             <Footer />

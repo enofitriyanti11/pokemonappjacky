@@ -129,18 +129,17 @@ export default function ListPokemonts() {
       <div className="grid mb-8 grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {pokemons.map((pokemon,id) => (
           <div key={id} className="group relative">
-            <div className="aspect-h-1 aspect-w-1 w-full my-8 overflow-hidden rounded-lg bg-gray-200 drop-shadow-lg xl:aspect-h-8 xl:aspect-w-7">
+            <div className="aspect-h-1 aspect-w-1 w-full my-8 overflow-hidden rounded-lg drop-shadow-lg xl:aspect-h-8 xl:aspect-w-7">
               <img
                 src={pokemon.image}
                 alt={pokemon.name}
                 className="object-contain h-48 w-96 lg:h-48 lg:w-96"
               />
             </div>
-            <h3 className="mt-4 ml-2 text-lg text-gray-900 font-bold">{pokemon.name}</h3>
-            <p className="mt-1 text-sm font-medium text-gray-700">{pokemon.type}</p>
+            <h3 className="mt-4 ml-2 text-lg text-base-100 font-bold">{pokemon.name}</h3>
             <div className="mt-5 relative">
-              <a  href={`/detail/${pokemon.name}`} className='ml-2 text-sm hover:link-hover'>See Details</a>
-              <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-5"> + </button>
+              <a  href={`/detail/${pokemon.name}`} className='ml-2 text-sm text-thirdColor hover:link-hover'>See Details</a>
+              <button onClick={()=> addPokemon(pokemon)} className="btn absolute btn-sm top-0 right-5 bg-thirdColor border-0 text-neutral-900 hover:bg-fourthColor"> + </button>
             </div>
           </div>
         ))}

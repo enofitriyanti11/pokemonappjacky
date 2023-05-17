@@ -33,30 +33,30 @@ export default function Login() {
                         <h1 className="text-5xl font-bold">Login Now!</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-primaryColor">
                     <form onSubmit={handleSubmit} method='post'>
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-base-100">Email</span>
                                 </label>
                                 <input type="text" placeholder="email" className="input input-bordered" value={email} onChange={handleEmailChange} />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-base-100">Password</span>
                                 </label>
                                 <input type="text" placeholder="password" className="input input-bordered" value={password} onChange={handlePasswordChange} />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt text-base-100 link link-hover">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary border-0 bg-thirdColor hover:bg-fourthColor hover:text-neutral-900">Login</button>
                             </div>
-                            <p className="mt-10 text-center text-sm text-gray-500">
+                            <p className="mt-10 text-center text-sm text-base-100">
                                 Belum Bisa Login ya?{' '}
-                                <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                <a href="/register" className="font-semibold leading-6 text-fourthColor hover:text-base-100">
                                     Daftar Dulu sini
                                 </a>
                             </p>
