@@ -2,13 +2,52 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { isLoggedIn } from './auth';
+import { logout } from './Logout';
 
 export default function Navbar() {
     const navigate = useNavigate();
+    const isUserLoggedIn = isLoggedIn();
 
-    const onPress = () => {
+    const onPressLogin = () => {
         navigate('/login')
+    };
+
+    const onPressListPokemonsIsUserLoggedIn = () => {
+        if (isUserLoggedIn) {
+            navigate('/listpokemons')
+        } else {
+            alert('Please login to access this feature.');
+        }
     }
+
+    const onPressMyPokemonsIsUserLoggedIn = () => {
+        if (isUserLoggedIn) {
+            navigate('/mypokemons')
+        } else {
+            alert('Please login to access this feature.');
+            
+        }
+    }
+
+    const renderAuthBtn = () => {
+        if (isUserLoggedIn) {
+            return (
+                <button onClick={handleLogout} className="btn mr-1">Logout</button>
+            )
+            
+        } else {
+            return (
+                <button onClick={onPressLogin} className="btn mr-1">Login</button>
+            )
+        }
+    }
+
+    const handleLogout = () => {
+        logout(); // Hapus token dari local storage
+        navigate('/'); // Redirect ke halaman login
+    };
+
 
     return (
         <div className="navbar bg-base-100">
@@ -29,12 +68,12 @@ export default function Navbar() {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/listpokemons">Daftar Pokemon</Link></li>
-                    <li><a href='/mypokemons'>My Pokemons</a></li>
+                    <li><Link to="/listpokemons" onClick={onPressListPokemonsIsUserLoggedIn} >Daftar Pokemon</Link></li>
+                    <li><Link to="/mypokemons" onClick={onPressMyPokemonsIsUserLoggedIn} >My Pokemons</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <button onClick={onPress} className="btn mr-1">Login</button>
+                {renderAuthBtn()}
             </div>
         </div>
     )
