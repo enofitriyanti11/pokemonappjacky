@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokemonappjacky-deployment
+  namespace: development
+  labels:
+    app: pokemonappjacky
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pokemonappjacky
+  template:
+    metadata:
+      labels:
+        app: pokemonappjacky
+    spec:
+      containers:
+      - name: pokemonappjacky
+        image: enofitriyanti11/pokemonappjacky:_TAG_
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokemonappjacky-service
+  namespace: development
+spec:
+  selector:
+    app: pokemonappjacky
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
